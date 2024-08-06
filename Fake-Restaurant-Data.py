@@ -6,7 +6,7 @@ import random
 fake = Faker()
 
 # Define number of rows
-num_rows = 500
+num_rows = 10
 
 # Create lists to hold the data
 names = []
@@ -27,25 +27,25 @@ for _ in range(num_rows):
     if random.choice([True, False]):
         visit_dates.append(fake.date_this_year().strftime('%Y-%m-%d'))
     else:
-        visit_dates.append(random.choice([None, 'INVALID_DATE']))
+        visit_dates.append(random.choice([None, 'NaN']))
     
     # Total bills with some invalid values and NA
     if random.choice([True, False]):
         total_bills.append(round(random.uniform(5.0, 500.0), 2))
     else:
-        total_bills.append(random.choice([None, 'INVALID_AMOUNT', np.nan]))
+        total_bills.append(random.choice([None, 'NaN', np.nan]))
     
     # Payment methods with some invalid and missing values
-    payment_methods.append(random.choice(['Cash', 'Credit Card', 'Debit Card', None, 'INVALID_METHOD']))
+    payment_methods.append(random.choice(['Cash', 'Credit Card', 'Debit Card', None, 'NaN']))
     
     # Ratings with some invalid and out-of-range values
     if random.choice([True, False]):
         ratings.append(random.uniform(1, 5))
     else:
-        ratings.append(random.choice([None, 'INVALID_RATING', 6.0, -1.0]))
+        ratings.append(random.choice([None, 'NaN', 6.0, -1.0]))
     
     # Feedbacks with some missing values and invalid entries
-    feedbacks.append(random.choice([fake.sentence(), None, 'INVALID_FEEDBACK']))
+    feedbacks.append(random.choice([fake.sentence(), None, 'NaN']))
 
 # Create DataFrame
 data = pd.DataFrame({
